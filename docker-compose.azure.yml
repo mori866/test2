@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+
+  # Apache コンテナ
+  apache:
+    image: sanohtest01.azurecr.io/php:8.2-apache
+    build: ./php
+    ports:
+     - "80:80"
+    volumes:
+     - lsdata:/var/www/html
+volumes:
+  lsdata:
+    driver: azure_file
+    driver_opts:
+      share_name: container-folder
+      storage_account_name: sanohdlsg02
